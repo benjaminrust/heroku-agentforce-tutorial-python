@@ -1,11 +1,33 @@
 {
-    "name": "Creating Agentforce Custom Actions with Heroku - Python",
-    "description": "This tutorial explains how to deploy a Heroku application written in Python that can be used to build an Agentforce custom action, extending the capabilities of any Agentforce agent with the power of Heroku's fully managed, elastic compute services.",
-    "repository": "https://github.com/heroku-examples/heroku-agentforce-tutorial-python",
-    "keywords": [
-      "python",
-      "openapi",
-      "flask",
-      "agentforce"
-    ]
-  }
+  "name": "Creating Agentforce Custom Actions with Heroku - Python",
+  "description": "This tutorial explains how to deploy a Heroku application written in Python that can be used to build an Agentforce custom action, extending the capabilities of any Agentforce agent with the power of Heroku's fully managed, elastic compute services.",
+  "repository": "https://github.com/heroku-examples/heroku-agentforce-tutorial-python",
+  "keywords": [
+    "python",
+    "openapi", 
+    "flask",
+    "agentforce"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/python"
+    }
+  ],
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "standard-1x"
+    }
+  },
+  "env": {
+    "FLASK_ENV": {
+      "description": "Flask environment setting",
+      "value": "production"
+    },
+    "PYTHON_VERSION": {
+      "description": "Python version to use",
+      "value": "3.12.11"
+    }
+  },
+  "stack": "heroku-24"
+}
