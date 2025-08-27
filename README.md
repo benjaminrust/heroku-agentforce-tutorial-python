@@ -2,8 +2,7 @@
 Creating Agentforce Custom Actions with Heroku - Python
 ========================================================
 
-> 💡 **Heroku Integration Pilot:**<br/> These steps utilize generally availble features in Heroku and Salesforce. If you have joined the Heroku Integration pilot program please refer to these alternative [instructions](https://github.com/heroku-examples/heroku-agentforce-tutorial/tree/heroku-integration-pilot).
-> 
+
 This tutorial explains how to deploy a Heroku application written in Python that can be used to build an Agentforce custom action, extending the capabilities of any Agentforce agent with the power of Heroku's fully managed, elastic compute services.
 
 > **_IN A HURRY?_** This application has already been deployed publicly and is available at [https://agentforce-tutorial-python-7894e9215571.herokuapp.com/](https://agentforce-tutorial-python-7894e9215571.herokuapp.com/), allowing you to skip straight to [configuring Heroku-based actions in your Salesforce organization](https://github.com/heroku-examples/heroku-agentforce-tutorial?tab=readme-ov-file#step-2---creating-a-named-credential) to try it out first.
@@ -32,6 +31,34 @@ git push heroku main
 ```
 
 Once this has been deployed, take note of the web URL and then refer to the instructions in [configuring Heroku-based actions in your Salesforce organization](https://github.com/heroku-examples/heroku-agentforce-tutorial?tab=readme-ov-file#step-2---creating-a-named-credential).
+
+### Important: Heroku AppLink CLI Configuration
+
+To use Heroku AppLink features with the CLI, you need to install the AppLink plugin:
+
+```bash
+heroku plugins:install @heroku-cli/plugin-applink
+```
+
+This plugin provides the necessary commands for working with AppLink add-ons and Salesforce connections.
+
+**Alternative: Environment Variable Workaround**
+
+If you encounter errors referencing the old add-on name `heroku-integration`, you can also set the following environment variable:
+
+```bash
+export HEROKU_INTEGRATION_ADDON=heroku-applink
+```
+
+**For permanent setup, add this to your shell profile:**
+- **macOS/Linux**: Add `export HEROKU_INTEGRATION_ADDON=heroku-applink` to your `~/.zshrc` or `~/.bashrc`
+- **Windows**: Set the environment variable in your system settings
+
+After installing the plugin or setting the environment variable, you can successfully run:
+```bash
+heroku addons:create heroku-applink -a your-app-name
+heroku salesforce:connect your-org -a your-app-name
+```
 
 Running and Testing Locally
 ---------------------------
